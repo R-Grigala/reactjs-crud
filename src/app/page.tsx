@@ -41,7 +41,7 @@ export default function Home() {
               <p className={styles.desc}>{item.description}</p>
             </div>
 
-            <Link href={`/details/${item.id}`}>
+            <Link href={`/products/${item.id}`}>
               see details
             </Link>
           </div>
