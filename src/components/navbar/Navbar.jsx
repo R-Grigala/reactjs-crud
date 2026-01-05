@@ -31,15 +31,17 @@ const Navbar = () => {
   return (
     <>
       <div className={styles.navbar}>
-        {NAV_LIST.map((item) => (
-          <div key={item.id}>
-            <Link href={item.url}>
-              <h3 className={pathname === item.url ? styles.activeTab : null}>
-                {item.title}
-              </h3>
-            </Link>
-          </div>
-        ))}
+        <div className={styles.navbardiv}>
+          {NAV_LIST.map((item) => (
+            <div key={item.id}>
+              <Link href={item.url}>
+                <h3 className={pathname === item.url ? styles.activeTab : null}>
+                  {item.title}
+                </h3>
+              </Link>
+            </div>
+          ))}
+        </div>
       </div>
     </>
   );
