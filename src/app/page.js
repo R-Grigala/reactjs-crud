@@ -1,5 +1,4 @@
 "use client";
-import Footer from "@/components/footer/Footer";
 import styles from "./page.module.css";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -30,13 +29,12 @@ export default function Home() {
               <h3 className={styles.title}>{item.title}</h3>
               <p className={styles.desc}>{item.description}</p>
             </div>
-            <Link href={`/details/${item.id}`}>
+            <Link href={`/products/${item.id}`}>
               <p>see details</p>
             </Link>
           </div>
         ))}
       </main>
-      <Footer />
     </div>
   );
 }

@@ -36,6 +36,16 @@ a {
   text-decoration: none;
 }
 
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;

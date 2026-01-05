@@ -18,12 +18,7 @@ const NAV_LIST = [
     id: 3,
     title: "Profile",
     url: "/profile",
-  },
-  {
-    id: 4,
-    title: "Contact",
-    url: "/contact",
-  },
+  }
 ];
 
 const Navbar = () => {

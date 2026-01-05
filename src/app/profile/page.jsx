@@ -4,7 +4,7 @@ const page = async () => {
   });
   const user = await resp.json();
 
-  return <div>{user.email}</div>;
+  return <div style={{ marginTop: "10vh" }}>{user.email}</div>;
 };
 
 export default page;
