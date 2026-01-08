@@ -1,27 +1,23 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./CartItem.module.css";
-import Image from "next/image";
-import Link from "next/link";
 
-function CartItem({ item, cartData, setCartData }) {
-  const [cartItem, setCartItem] = useState(null);
-  const [number, setnumber] = useState(item.quantity);
-  const fetchCartItem = async () => {
-    const res = await fetch(
+const CartItem = ({ item, cartData, setCartData }) => {
+  const [cartProduct, setCartProduct] = useState(null);
+
+  const fetchCartProduct = async () => {
+    const response = await fetch(
       `https://fakestoreapi.com/products/${item.productId}`
     );
-    const resp = await res.json();
-    return setCartItem(resp);
+    const result = await response.json();
+    return setCartProduct(result);
   };
-  const handleClick = (event) => {
-    if (event === "-") {
-      setnumber(number - 1);
-    } else {
-      setnumber(number + 1);
-    }
-  };
-  const handleDelete = async (id) => {
+
+  useEffect(() => {
+    fetchCartProduct();
+  }, []);
+
+  const handleDeleteProduct = async (id) => {
     const resposne = await fetch("https://fakestoreapi.com/carts/1", {
       method: "DELETE",
     });
@@ -30,59 +26,16 @@ function CartItem({ item, cartData, setCartData }) {
       setCartData(cartData.filter((item) => item.productId !== id));
     }
   };
-  useEffect(() => {
-    fetchCartItem();
-  }, []);
-  if (!cartItem) {
-    return <div>ჩატვირთვა...</div>;
-  }
+
+  if (!cartProduct) return <div>loading...</div>;
+
   return (
-    <div className={styles.cartItem}>
-      <div className={styles.cartHeadWrapper}>
-        <Link href={`/products/${item.productId}`}>
-          <Image
-            src={cartItem.image}
-            width={80}
-            height={90}
-            alt={cartItem.title}
-          />
-        </Link>
-        <div className={styles.cartImgTextWrapper}>
-          <p>{cartItem.title}</p>
-          <h5>{cartItem.category}</h5>
-        </div>
-      </div>
-      <div className={styles.cartBodyWrapper}>
-        <div className={styles.cartQuantityContainer}>
-          <button
-            disabled={number === 1}
-            className={styles.plus}
-            onClick={(event) => {
-              handleClick(event.target.innerText);
-            }}
-          >
-            -
-          </button>
-          <p>{number}</p>
-          <button
-            disabled={number === 10}
-            className={styles.subtract}
-            onClick={(event) => handleClick(event.target.innerText)}
-          >
-            +
-          </button>
-        </div>
-        <div>
-          <span>${(cartItem.price * number).toFixed(1)}</span>
-        </div>
-        <div>
-          <button onClick={() => handleDelete(item.productId)}>
-            <Image src={"/bin.svg"} width={20} height={20} alt="bin" />
-          </button>
-        </div>
-      </div>
+    <div className={styles.itemContainer}>
+      პროდუქტის დასახელება: {cartProduct.title}
+      რაოდენობა: {item.quantity}
+      <button onClick={() => handleDeleteProduct(cartProduct.id)}>წაშლა</button>
     </div>
   );
-}
+};
 
 export default CartItem;
