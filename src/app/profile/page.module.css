@@ -1,0 +1,15 @@
+.profileContainer {
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.profileContainer ul {
+  list-style: none;
+}
+.profileContainer ul li {
+  font-size: 22px;
+}

@@ -34,7 +34,7 @@ function CartItem({ item, cartData, setCartData }) {
     fetchCartItem();
   }, []);
   if (!cartItem) {
-    return <div>Loading...</div>;
+    return <div>ჩატვირთვა...</div>;
   }
   return (
     <div className={styles.cartItem}>
